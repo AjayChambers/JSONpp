@@ -16,8 +16,10 @@
 
 namespace Json {
 
-using LexResult_T = std::variant<Token, TDR>;
-using Tokenize_T  = std::variant<std::vector<Token>, TDR>;
+using ErrReport = DiagnosticReport;
+using LexResult_T = std::variant<Token, ErrReport>;
+using Tokenize_T  = std::variant<std::vector<Token>, ErrReport>;
+
 
 
 class JsonLexer {
@@ -35,6 +37,5 @@ class JsonLexer {
 };
 
 }
-
 
 #endif

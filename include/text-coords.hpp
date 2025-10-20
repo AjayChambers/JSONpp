@@ -7,7 +7,7 @@
 #include <utility>
 
 
-namespace Json {
+namespace TextFile {
 
 class TextCoords {
    private:

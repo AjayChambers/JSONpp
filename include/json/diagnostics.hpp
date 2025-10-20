@@ -37,48 +37,35 @@
 #include <string>
 #include <text-coords.hpp>
 
+
+using namespace TextFile;
 namespace Json {
 
-enum class ErrorType { UNEXPECTED = 1, NOT_FOUND = 2, INVALID = 3 };
+
+enum class ErrType { UNEXPECTED = 1, NOT_FOUND = 2, INVALID = 3 };
+std::string toString(const ErrType &id);
 
 
-std::string toString(const ErrorType &id);
-
+// Diagnostic Report
 class DiagnosticReport {
-   private:
-    ErrorType   id_;
-    std::string cause_  = "";
-    std::string report_ = "";
-
-
-   public:
-    DiagnosticReport(ErrorType id, std::string cause = "");
-
-    ErrorType   id() const noexcept;
-    std::string report() const noexcept;
-    std::string cause() const noexcept;
-
-
-   protected:
-    virtual void formatReport();
-    void         setReport(std::string report) noexcept;
-};
-
-
-
-/// @brief T.D.R. = "Token Diagnostic Report"
-class TDR : public DiagnosticReport {
-   private:
+  private:
+    ErrType     errorType;
     Token       token;
-    TextCoords  location;
+    TextCoords  tokenPosition;
+    TokenId     tokenId;
     TokenType   tokenType;
     std::string tokenValue;
+    std::string cause;
+    std::string report;
 
-   public:
-    TDR(ErrorType id, Token token, std::string cause = "");
+  public:
+    DiagnosticReport(ErrType id, TextCoords loc, std::string cause = "");
+    DiagnosticReport(ErrType id, Token token, std::string cause = "");
+    void printReport() const noexcept;
 
-   protected:
-    void formatReport() override;
+  protected:
+    void formatReport();
+    void setReport(std::string report) noexcept;
 };
 
 }

@@ -11,7 +11,7 @@
 namespace fs = std::filesystem;
 
 
-namespace Json {
+namespace TextFile {
 
 class TextBuffer {
    public:

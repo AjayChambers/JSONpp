@@ -4,24 +4,24 @@
 
 using namespace std;
 
-namespace Json {
 
+namespace TextFile {
 
 
 TextCoords::TextCoords()
-: coordinates({ 0, 0 })
+ : coordinates({ 0, 0 })
 {}
 
 
 
 TextCoords::TextCoords(size_t row, size_t col)
-: coordinates(row, col)
+ : coordinates(row, col)
 {}
 
 
 
 TextCoords::TextCoords(const TextCoords &other)
-: coordinates(other.coordinates)
+ : coordinates(other.coordinates)
 {}
 
 
@@ -47,7 +47,7 @@ size_t TextCoords::col() noexcept
 void TextCoords::print() const noexcept
 {
     string str = format(
-    "\n\t| LINE #{}\n\t| CHAR #{}\n\n", coordinates.first, coordinates.second);
+      "\n\t| LINE #{}\n\t| CHAR #{}\n\n", coordinates.first, coordinates.second);
     cout << "\n\n  Printing Text Coordinates: " << str;
 }
 

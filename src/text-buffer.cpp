@@ -17,7 +17,7 @@ using namespace JSONpp;
 using Const_Iter = string_view::iterator;
 
 
-namespace Json {
+namespace TextFile {
 
 /**
  *****************************************************************

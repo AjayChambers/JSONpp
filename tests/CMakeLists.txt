@@ -10,6 +10,14 @@ gtest(https://github.com/google/googletest/archive/refs/heads/main.zip)
 include(target_unit_test)
 
 # COMPILE & GENERATE EXECUTABLE BINARY: 'sandbox'
-target_unit_test(sandbox
-  sandbox.test.cpp
-  "text_buffer;json_lexer")
+target_unit_test(
+    sandbox
+    sandbox.test.cpp
+    "text_buffer;json_lexer"
+)
+
+target_unit_test(
+    token_test
+    token.test.cpp
+    "GTest::gtest_main;json_lexer"
+)
