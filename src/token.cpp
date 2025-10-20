@@ -22,8 +22,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  ****************************************************************/
-#include <json/token.hpp>
 #include "utility/jpp-exception.hpp"
+
+#include <json/token.hpp>
 
 #include <string>
 #include <utility>
