@@ -3,7 +3,6 @@
 #include <text-coords.hpp>
 
 
-using namespace std;
 
 namespace TextFile {
 
