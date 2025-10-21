@@ -6,6 +6,23 @@
 
 namespace TextFile {
 
+
+
+//////////////////////////////////////////////////////////////
+// ||=====================================================||//
+// ||        COORDINATE CLASS MEMBER DEFINITIONS          ||//
+// ||=====================================================||//
+//////////////////////////////////////////////////////////////
+
+/*****************************************************************
+ * @public
+ * @brief Construct TextCoords obj using two 'size_t' arguments.
+ * @param num Sets the coordinate's numeric value.
+ *****************************************************************/
+Coordinate::Coordinate(size_t num)
+ : num(num)
+{}
+
 TextCoords::TextCoords(size_t row, size_t col)
  : coords(row, col)
 {}
