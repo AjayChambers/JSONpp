@@ -1,5 +1,7 @@
 #include "utility/jpp-exception.hpp"
 
+#include <text-buffer.hpp>
+
 #include <cstddef>
 #include <cstring>
 #include <format>
@@ -8,7 +10,6 @@
 #include <iterator>
 #include <stdexcept>
 #include <string>
-#include <text-buffer.hpp>
 #include <vector>
 
 using namespace std;
@@ -22,39 +23,40 @@ namespace TextFile {
 /**
  *****************************************************************
  * @public
- * @brief A buffer for storing, and transforming JSON formatted
- * data.
+ * @brief TextBuffer is a container that lets the developer walk
+ * through the text char by char w/ complete control over the
+ * iteration.
  * @param json_ a string that contains the JSON formatted text.
  *****************************************************************/
 TextBuffer::TextBuffer(const string &str)
-: data(str)
-, text(str)
-, size_(text.size())
-, iter(text.begin())
-, end_(text.end())
-, pos(1, 1)
+ : data(str)
+ , text(str)
+ , size_(text.size())
+ , iter(text.begin())
+ , end_(text.end())
+ , pos(1, 1)
 {}
 
 
 // Construct from a text file's data
 TextBuffer::TextBuffer(const fs::path &filepath)
-: data(read(filepath))
-, text(data)
-, size_(text.size())
-, iter(text.begin())
-, end_(text.end())
-, pos({ 1, 1 })
+ : data(read(filepath))
+ , text(data)
+ , size_(text.size())
+ , iter(text.begin())
+ , end_(text.end())
+ , pos({ 1, 1 })
 {}
 
 
 /// Constructor (Copy Ctor)
 TextBuffer::TextBuffer(const TextBuffer &other)
-: data(other.data)
-, text(other.text)
-, size_(other.size_)
-, iter(other.iter)
-, end_(other.end_)
-, pos(other.pos)
+ : data(other.data)
+ , text(other.text)
+ , size_(other.size_)
+ , iter(other.iter)
+ , end_(other.end_)
+ , pos(other.pos)
 {}
 
 
@@ -105,7 +107,7 @@ char TextBuffer::mvBack()
     if (iter == text.begin())
     {
         throw range_error(
-        "Iter attempted to move one index left while pointing at index pos 0.");
+          "Iter attempted to move one index left while pointing at index pos 0.");
     }
 
     return *(--iter);
@@ -119,7 +121,7 @@ char TextBuffer::mvBack()
  * @brief View the char that the iter will point at next.
  * @returns The index to the right of the current iter pos (+1).
  *****************************************************************/
-char TextBuffer::peek() const noexcept
+char TextBuffer::peekNext() const noexcept
 { return *std::next(iter, 1); }
 
 
@@ -141,7 +143,7 @@ char TextBuffer::peekPrev() const noexcept
  * @brief View the current char pointed to by the built in iter.
  * @returns The char in the index the iter points to.
  *****************************************************************/
-char TextBuffer::currentChar() const noexcept
+char TextBuffer::peekCurrent() const noexcept
 { return *iter; }
 
 
