@@ -14,6 +14,7 @@ namespace fs = std::filesystem;
 
 namespace TextFile {
 
+
 class TextBuffer {
   public:
     using Const_Iter = std::string_view::iterator;
@@ -23,10 +24,11 @@ class TextBuffer {
     std::string_view text;
     size_t           size_;
     Const_Iter       iter;
-    Const_Iter       end_;
-    TextCoords       pos;
+    Const_Iter       end;
+    TextCoords       pos_;
 
   public:
+
     explicit TextBuffer(const std::string &str);
     TextBuffer(const TextBuffer &other);
     TextBuffer(const fs::path &filepath);
@@ -35,7 +37,7 @@ class TextBuffer {
     TextBuffer &operator = (const std::string &str);
 
     size_t     size() const noexcept;
-    TextCoords currentPosition() const noexcept;
+    TextCoords pos() const noexcept;
 
     // Move iterator
     char mvFwd() noexcept;              // Move iter fwd  (+1)
