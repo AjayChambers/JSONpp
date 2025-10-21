@@ -30,6 +30,13 @@ TextCoords::TextCoords(size_t row, size_t col)
 
 
 
+/*****************************************************************
+ * @public
+ * @overload
+ * @brief Copy constructor that creates a TextCoords object from
+ * the property values of another TextCoords object.
+ * @param other Takes a TextCords object.
+ *****************************************************************/
 TextCoords::TextCoords(const TextCoords &other)
  : coords(other.coords)
 {}
