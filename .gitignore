@@ -16,5 +16,8 @@ cspell.json
 # GENERATED FILES
 build/*
 
+# Local Dev Test File
+tests/sandbox.test.cpp
+
 # Trash-bin
 .trash/
