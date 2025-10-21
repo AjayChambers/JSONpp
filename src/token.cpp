@@ -207,7 +207,7 @@ std::string to_string(const TokenId &tokenType)
 
 
 
-Token tokenFactory(TokenId tokenId, TextCoords position)
+Token genToken(TokenId tokenId, TextCoords position)
 {
     switch (tokenId)
     {
@@ -259,26 +259,30 @@ Token tokenFactory(TokenId tokenId, TextCoords position)
         case TokenId::String:
         {
             throw Ex(
-              "'tokenFactory(...)' cannot create 'TokenId::String'"
+              "'genToken(...)' cannot create 'TokenId::String'"
               + exLb
-              + "tokens. Use 'stringTokenFactory()' instead");
+              + "tokens. Use 'genStringToken()' instead");
         }
 
         case TokenId::Number:
         {
             throw Ex(
-              "'tokenFactory(...)' cannot create 'TokenId::Number'"
+              "'genToken(...)' cannot create 'TokenId::Number'"
               + exLb
-              + "tokens. Use 'numberTokenFactory()' instead");
+              + "tokens. Use 'genNumberToken()' instead");
         }
     }
 }
 
 
 
-Token stringTokenFactory(std::string tokenValue, TextCoords position)
+
+Token genStringToken(std::string tokenValue, TextCoords position)
 { return Token(TokenId::String, tokenValue, position); }
-Token numberTokenFactory(std::string tokenValue, TextCoords position)
+
+
+
+Token genNumberToken(std::string tokenValue, TextCoords position)
 { return Token(TokenId::Number, tokenValue, position); }
 
 // Token genNumberToken(TokenId tokenId, TextCoords position){}

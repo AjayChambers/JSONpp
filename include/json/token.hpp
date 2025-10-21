@@ -60,9 +60,9 @@ class Token {
 std::string to_string(const TokenType &type);
 std::string to_string(TokenId tokenType);
 
-Token tokenFactory(TokenId tokenId, TextCoords position);
-Token stringTokenFactory(std::string tokenValue, TextCoords position);
-Token numberTokenFactory(std::string numberAsString, TextCoords position);
+Token genToken(TokenId tokenId, TextCoords position);
+Token genStringToken(std::string tokenValue, TextCoords position);
+Token genNumberToken(std::string numberAsString, TextCoords position);
 
 }  // Ns: Json
 #endif
