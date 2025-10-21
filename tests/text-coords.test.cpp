@@ -1,3 +1,5 @@
+#include "utility/print-test-info.hpp"
+
 #include <text-coords.hpp>
 #include <gtest/gtest.h>
 
@@ -8,35 +10,11 @@
 using namespace std;
 using namespace TextFile;
 
-void printTestDetails(
-  int    testNum,
-  string name,
-  string member,
-  string reason,
-  string desc)
-{
-    constexpr string_view FMT
-      = "\n\n\n\n\n----------------------------------------------------------\n"
-        "\n[TEST #{}]: '{}'"
-        "\n "
-        "\n ENTITY BEING TESTED: "
-        "\n  Class:  'TextCoords'"
-        "\n  Member: '{}'"
-        "\n "
-        "\n HOW DOES THIS TEST WORK?"
-        "\n  \"{}\""
-        "\n "
-        "\n WHAT IS THE PURPOSE OF THIS TEST?"
-        "\n  \"{}\""
-        "\n\n";
-
-    cout << format(FMT, testNum, name, member, reason, desc);
-}
 
 
 
 
-TEST(TextCoordsClass, ComparisonOperatorsTest)
+TEST(TextCoordsSuite, ComparisonOperatorsTest)
 {
     /****************************************************************
      * TEST #1: 'ComparisonOperatorsTest'
@@ -50,14 +28,18 @@ TEST(TextCoordsClass, ComparisonOperatorsTest)
      *   are working as expected.
      ****************************************************************/
 
-    printTestDetails(
-      1,
+    JSONpp::printTestDetails(
+      2,
+      "TextCoordsSuite",
+      'A',
       "ComparisonOperatorsTest",
-      "Comparison Operators",
+      "CLASS: TextCoords",
+      "TextCoords Comparison Operators",
       "Executes a series of unique comparisons using 5 different "
-      "\n  TextCoords objects.",
+      "\n\t  TextCoords objects.",
       "This test affirms that the comparison operators for the "
-      "\n  TextCoords class are working as expected.");
+      "\n\t  TextCoords class are working as expected."
+    );
 
     TextCoords A = { 250, 70 };
     TextCoords B = { 250, 50 };
