@@ -26,3 +26,8 @@ target_unit_test(
     lexer_test
     lexer.test.cpp
     "GTest::gtest_main;json_lexer")
+
+target_unit_test(
+    text_buffer_test
+    text-buffer.test.cpp
+    "GTest::gtest_main;text_buffer")
