@@ -35,7 +35,7 @@
 
 #include <set>
 #include <string>
-#include <text-coords.hpp>
+#include <coordinates.hpp>
 
 
 using namespace TextFile;
@@ -51,7 +51,7 @@ class DiagnosticReport {
   private:
     ErrType     errorType;
     Token       token;
-    TextCoords  tokenPosition;
+    Coordinates  tokenPosition;
     TokenId     tokenId;
     TokenType   tokenType;
     std::string tokenValue;
@@ -59,7 +59,7 @@ class DiagnosticReport {
     std::string report;
 
   public:
-    DiagnosticReport(ErrType id, TextCoords loc, std::string cause = "");
+    DiagnosticReport(ErrType id, Coordinates loc, std::string cause = "");
     DiagnosticReport(ErrType id, Token token, std::string cause = "");
     void printReport() const noexcept;
 

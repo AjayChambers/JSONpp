@@ -2,7 +2,7 @@
 #ifndef TOKEN_HPP
 #define TOKEN_HPP
 
-#include <text-coords.hpp>
+#include <coordinates.hpp>
 
 #include <string>
 #include <utility>
@@ -35,10 +35,10 @@ class Token {
     TokenId     id_;
     TokenType   type_;
     std::string value_;
-    TextCoords  position_;
+    Coordinates  position_;
 
   public:
-    Token(TokenId type, std::string value = "", TextCoords pos = { 0, 0 });
+    Token(TokenId type, std::string value = "", Coordinates pos = { 0, 0 });
     Token(const Token &other);
     Token(const Token &&other);
 
@@ -50,7 +50,7 @@ class Token {
 
     TokenId     id() noexcept;
     std::string value() noexcept;
-    TextCoords  position() noexcept;
+    Coordinates  position() noexcept;
 
   private:
     TokenType associatedType(TokenId id);
@@ -60,9 +60,9 @@ class Token {
 std::string to_string(const TokenType &type);
 std::string to_string(TokenId tokenType);
 
-Token genToken(TokenId tokenId, TextCoords position);
-Token genStringToken(std::string tokenValue, TextCoords position);
-Token genNumberToken(std::string numberAsString, TextCoords position);
+Token genToken(TokenId tokenId, Coordinates position);
+Token genStringToken(std::string tokenValue, Coordinates position);
+Token genNumberToken(std::string numberAsString, Coordinates position);
 
 }  // Ns: Json
 #endif

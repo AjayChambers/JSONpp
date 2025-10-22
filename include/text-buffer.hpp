@@ -2,7 +2,7 @@
 #ifndef JSON_VIEW_HPP
 #define JSON_VIEW_HPP
 
-#include <text-coords.hpp>
+#include <coordinates.hpp>
 
 #include <filesystem>
 #include <string>
@@ -25,7 +25,7 @@ class TextBuffer {
     size_t           size_;
     Const_Iter       iter;
     Const_Iter       end;
-    TextCoords       pos_;
+    Coordinates       pos_;
 
   public:
 
@@ -37,7 +37,7 @@ class TextBuffer {
     TextBuffer &operator = (const std::string &str);
 
     size_t     size() const noexcept;
-    TextCoords pos() const noexcept;
+    Coordinates pos() const noexcept;
 
     // Move iterator
     char mvFwd() noexcept;              // Move iter fwd  (+1)

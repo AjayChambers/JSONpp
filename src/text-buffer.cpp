@@ -1,5 +1,6 @@
 #include "utility/jpp-exception.hpp"
 
+#include <coordinates.hpp>
 #include <text-buffer.hpp>
 
 #include <cstddef>
@@ -33,8 +34,8 @@ TextBuffer::TextBuffer(const string &str)
  , text(str)
  , size_(text.size())
  , iter(text.begin())
- , end_(text.end())
- , pos(1, 1)
+ , end(text.end())
+ , pos_(1, 1)
 {}
 
 
@@ -44,8 +45,8 @@ TextBuffer::TextBuffer(const fs::path &filepath)
  , text(data)
  , size_(text.size())
  , iter(text.begin())
- , end_(text.end())
- , pos({ 1, 1 })
+ , end(text.end())
+ , pos_({ 1, 1 })
 {}
 
 
@@ -55,8 +56,8 @@ TextBuffer::TextBuffer(const TextBuffer &other)
  , text(other.text)
  , size_(other.size_)
  , iter(other.iter)
- , end_(other.end_)
- , pos(other.pos)
+ , end(other.end)
+ , pos_(other.pos_)
 {}
 
 
@@ -68,9 +69,9 @@ TextBuffer &TextBuffer::operator = (const TextBuffer &other)
     {
         text  = other.text;
         iter  = other.iter;
-        end_  = other.end_;
+        end  = other.end;
         size_ = other.size_;
-        pos   = other.pos;
+        pos_   = other.pos_;
     }
 
     return *this;
@@ -88,7 +89,7 @@ TextBuffer &TextBuffer::operator = (const TextBuffer &other)
  ******************************************************************/
 char TextBuffer::mvFwd() noexcept
 {
-    if (iter == end_) { return '\0'; }
+    if (iter == end) { return '\0'; }
     return *(++iter);
 }
 
@@ -162,12 +163,13 @@ size_t TextBuffer::size() const noexcept
 /**
  *****************************************************************
  * @public
- * @brief Gets the position of the built in iterator.
+ * @brief Returns a pair of coordinates that point to the location
+ * of the 'Const_Iter iter'
  * @returns pair<size_t,size_t> first is row, second is col.
  * @example `auto [row, col] = json.iterPosition();`
  *****************************************************************/
-TextCoords TextBuffer::currentPosition() const noexcept
-{ return pos; }
+Coordinates TextBuffer::pos() const noexcept
+{ return pos_; }
 
 
 
@@ -178,7 +180,7 @@ TextCoords TextBuffer::currentPosition() const noexcept
  * string.
  *****************************************************************/
 bool TextBuffer::endReached() const noexcept
-{ return (iter == end_); }
+{ return (iter == end); }
 
 
 
@@ -191,9 +193,9 @@ bool TextBuffer::endReached() const noexcept
 void TextBuffer::reset()
 {
     iter      = text.begin();
-    end_      = text.end();
+    end      = text.end();
     size_     = text.size();
-    this->pos = { 1, 1 };  // reset row/col tracking
+    this->pos_ = { 1, 1 };  // reset row/col tracking
 }
 
 

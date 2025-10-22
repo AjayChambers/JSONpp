@@ -4,11 +4,11 @@
 
 #include <json/diagnostics.hpp>
 #include <json/token.hpp>
+#include <coordinates.hpp>
 
 #include <iostream>
 #include <string>
 #include <string_view>
-#include <text-buffer.hpp>
 #include <utility>
 #include <variant>
 #include <vector>
@@ -16,26 +16,13 @@
 
 namespace Json {
 
-using ErrReport = DiagnosticReport;
-using LexResult_T = std::variant<Token, ErrReport>;
-using Tokenize_T  = std::variant<std::vector<Token>, ErrReport>;
+using Report    = DiagnosticReport;
+using TokenRes  = std::variant<Token, Report>;
+using LexObjRes = std::variant<std::vector<Token>, Report>;
 
 
+LexObjRes jsonLexer(const std::string &json);
 
-class JsonLexer {
-    TextBuffer         buffer;
-    std::vector<Token> tokens;
-    std::string        json;
 
-   public:
-    JsonLexer();
-    JsonLexer(const std::string &json);
-
-    Tokenize_T  tokenize();
-    LexResult_T lexString();
-    LexResult_T lexNumber();
-};
-
-}
-
+}  // Ns Json
 #endif

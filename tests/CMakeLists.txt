@@ -17,9 +17,9 @@ target_unit_test(
 
 # TextCoords Test
 target_unit_test(
-    text_coords_test
-    text-coords.test.cpp
-    "GTest::gtest_main;text_coords")
+    coordinates_test
+    coordinates.test.cpp
+    "GTest::gtest_main;coordinates")
 
 # JSON Lexer Test (exec-name: lexer_test)
 target_unit_test(
